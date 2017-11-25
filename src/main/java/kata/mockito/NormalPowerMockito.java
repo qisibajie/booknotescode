@@ -8,6 +8,12 @@ public class NormalPowerMockito {
         return student.getName();
     }
 
+    public String getStudentName(String name){
+        Student student = new Student(name);
+        return student.getName();
+    }
+
+
     public String getPersonName(Person person) {
         return person.getName();
     }
