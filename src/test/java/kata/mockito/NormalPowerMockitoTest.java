@@ -41,11 +41,15 @@ public class NormalPowerMockitoTest {
 
 
     @Test
-    public void testNormalMockito_getPersonName() {
+    public void testGetPersonNameWithInterface() {
+        //given
+        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
+        //when
         Person person = mock(Person.class);
         when(person.getName()).thenReturn("Will");
-        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
-        assertThat(normalPowerMockito.getPersonName(person), is("Will"));
+        String personName = normalPowerMockito.getPersonName(person);
+        //then
+        assertThat(personName, is("Will"));
     }
 
 }
