@@ -88,4 +88,17 @@ public class NormalPowerMockitoTest {
         //then
         assertThat(expectedName, is("willPrivate"));
     }
+
+    @Test
+    @PrepareForTest(NormalPowerMockito.class)
+    public void should_use_PrepareForTest_annotation_when_mock_system_static_method(){
+        //given
+        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
+        mockStatic(System.class);
+        //when
+        when(System.getProperty("abc")).thenReturn("AAA");
+        String expectedName = normalPowerMockito.callSystemStaticMethod("abc");
+        //then
+        assertThat(expectedName, is("AAA"));
+    }
 }
