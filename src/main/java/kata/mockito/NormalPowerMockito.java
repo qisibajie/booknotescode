@@ -26,4 +26,11 @@ public class NormalPowerMockito {
         return Student.getStaticName();
     }
 
+    public String getPrivateName(){
+        return getPrivate();
+    }
+
+    private String getPrivate() {
+        return "123";
+    }
 }

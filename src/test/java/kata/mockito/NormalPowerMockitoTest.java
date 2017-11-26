@@ -75,4 +75,17 @@ public class NormalPowerMockitoTest {
         //then
         assertThat(expectedName, is("will-static"));
     }
+
+    @Test
+    @PrepareForTest(NormalPowerMockito.class)
+    public void should_use_PrepareForTest_annotation_when_mock_private_method_given_private_method_in_normalPowerMockito() throws Exception {
+        //given
+        NormalPowerMockito normalPowerMockito = mock(NormalPowerMockito.class);
+        //when
+        when(normalPowerMockito.getPrivateName()).thenCallRealMethod();
+        when(normalPowerMockito, "getPrivate").thenReturn("willPrivate");
+        String expectedName = normalPowerMockito.getPrivateName();
+        //then
+        assertThat(expectedName, is("willPrivate"));
+    }
 }
