@@ -24,4 +24,8 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public final String getNameAge() {
+        return name + ": " + age;
+    }
 }

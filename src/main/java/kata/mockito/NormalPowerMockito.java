@@ -8,7 +8,7 @@ public class NormalPowerMockito {
         return student.getName();
     }
 
-    public String getStudentName(String name){
+    public String getStudentName(String name) {
         Student student = new Student(name);
         return student.getName();
     }
@@ -17,4 +17,9 @@ public class NormalPowerMockito {
     public String getPersonName(Person person) {
         return person.getName();
     }
+
+    public String getStudentNameAge(Student student) {
+        return student.getNameAge();
+    }
+
 }

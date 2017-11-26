@@ -38,8 +38,6 @@ public class NormalPowerMockitoTest {
         assertThat(expectedName, is("WILL_START"));
     }
 
-
-
     @Test
     public void testGetPersonNameWithInterface() {
         //given
@@ -50,6 +48,19 @@ public class NormalPowerMockitoTest {
         String personName = normalPowerMockito.getPersonName(person);
         //then
         assertThat(personName, is("Will"));
+    }
+
+    @Test
+    @PrepareForTest(Student.class)
+    public void should_use_RunWith_PrepareForTest_annotation_when_mock_final_method_given_final_method_in_student() {
+        //given
+        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
+        //when
+        Student student = mock(Student.class);
+        when(student.getNameAge()).thenReturn("Will : 18");
+        String studentNameAge = normalPowerMockito.getStudentNameAge(student);
+        //then
+        assertThat(studentNameAge, is("Will : 18"));
     }
 
 }
