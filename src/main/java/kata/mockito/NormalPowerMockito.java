@@ -22,4 +22,8 @@ public class NormalPowerMockito {
         return student.getNameAge();
     }
 
+    public String getStaticName() {
+        return Student.getStaticName();
+    }
+
 }

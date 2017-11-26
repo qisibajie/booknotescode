@@ -28,4 +28,8 @@ public class Student {
     public final String getNameAge() {
         return name + ": " + age;
     }
+
+    public static String getStaticName() {
+        return "name";
+    }
 }

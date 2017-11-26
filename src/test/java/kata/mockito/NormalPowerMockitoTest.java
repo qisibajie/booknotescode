@@ -45,9 +45,9 @@ public class NormalPowerMockitoTest {
         //when
         Person person = mock(Person.class);
         when(person.getName()).thenReturn("Will");
-        String personName = normalPowerMockito.getPersonName(person);
+        String expectedPersonName = normalPowerMockito.getPersonName(person);
         //then
-        assertThat(personName, is("Will"));
+        assertThat(expectedPersonName, is("Will"));
     }
 
     @Test
@@ -58,9 +58,21 @@ public class NormalPowerMockitoTest {
         //when
         Student student = mock(Student.class);
         when(student.getNameAge()).thenReturn("Will : 18");
-        String studentNameAge = normalPowerMockito.getStudentNameAge(student);
+        String expectedNameAge = normalPowerMockito.getStudentNameAge(student);
         //then
-        assertThat(studentNameAge, is("Will : 18"));
+        assertThat(expectedNameAge, is("Will : 18"));
     }
 
+    @Test
+    @PrepareForTest(Student.class)
+    public void should_use_RunWith_PrepareForTest_annotation_when_mock_static_method_given_static_method_in_student(){
+        //given
+        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
+        //when
+        mockStatic(Student.class);
+        when(Student.getStaticName()).thenReturn("will-static");
+        String expectedName = normalPowerMockito.getStaticName();
+        //then
+        assertThat(expectedName, is("will-static"));
+    }
 }
