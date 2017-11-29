@@ -13,7 +13,6 @@ public class NormalPowerMockito {
         return student.getName();
     }
 
-
     public String getPersonName(Person person) {
         return person.getName();
     }
