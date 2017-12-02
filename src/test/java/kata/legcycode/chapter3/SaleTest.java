@@ -3,8 +3,7 @@ package kata.legcycode.chapter3;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class SaleTest {
 
@@ -26,6 +25,26 @@ public class SaleTest {
         sale.scan("wanglichangcheng");
 
         verify(display).showLine("123wanglichangcheng");
+    }
+
+    @Test
+    public void testGetNameWithSpy(){
+        Sale sale = spy(Sale.class);
+
+        assertEquals("will", sale.getName("will"));
+        verify(sale).getName("will");
+    }
+
+    @Test
+    public void testGetNameWithMock(){
+        Sale sale = mock(Sale.class);
+
+
+        when(sale.getName("will")).thenReturn("WILL");
+        assertEquals("WILL", sale.getName("will"));
+        assertEquals("WILL", sale.getName("will"));
+        assertEquals("WILL", sale.getName("will"));
+        verify(sale, times(3)).getName("will");
     }
 
 }
