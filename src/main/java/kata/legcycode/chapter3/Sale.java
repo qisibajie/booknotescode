@@ -1,5 +1,8 @@
 package kata.legcycode.chapter3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sale {
     private Display display;
 
@@ -21,7 +24,8 @@ public class Sale {
     }
 
     public int getAge(int age) {
-        return age;
+        List<Integer> integers = new ArrayList<>();
+        return integers.get(10);
     }
 
 }

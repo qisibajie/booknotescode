@@ -18,7 +18,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testDisplayAnItemWithMock(){
+    public void testDisplayAnItemWithMock() {
         Display display = mock(Display.class);
         Sale sale = new Sale(display);
 
@@ -28,7 +28,7 @@ public class SaleTest {
     }
 
     @Test
-    public void testGetNameWithSpy(){
+    public void testGetNameWithSpy() {
         Sale sale = spy(Sale.class);
 
         assertEquals("will", sale.getName("will"));
@@ -36,9 +36,8 @@ public class SaleTest {
     }
 
     @Test
-    public void testGetNameWithMock(){
+    public void testGetNameWithMock3Times() {
         Sale sale = mock(Sale.class);
-
 
         when(sale.getName("will")).thenReturn("WILL");
         assertEquals("WILL", sale.getName("will"));
@@ -47,4 +46,22 @@ public class SaleTest {
         verify(sale, times(3)).getName("will");
     }
 
+    @Test
+    public void testSpyDoReturnShouldNotGoThroughMethodBody() {
+        Sale sale = spy(Sale.class);
+
+        doReturn(3).when(sale).getAge(1);
+        assertEquals(3, sale.getAge(1));
+        verify(sale).getAge(1);
+    }
+
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSpyThenReturnShouldGoThroughMethodBody() {
+        Sale sale = spy(Sale.class);
+
+        when(sale.getAge(1)).thenReturn(3);
+        assertEquals(3, sale.getAge(1));
+        verify(sale).getAge(1);
+    }
 }
