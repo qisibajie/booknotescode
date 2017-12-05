@@ -6,6 +6,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.*;
@@ -115,10 +116,34 @@ public class NormalPowerMockitoTest {
         normalPowerMockito.loopStudent(2);
         //then
 
-       verifyStatic(times(2));
+        verifyStatic(times(2));
         Student.getStaticName();
 
-        verifyStatic(times(4));
+        verifyStatic(times(3));
         Mock.getStaticName();
+
+        verifyStatic(times(4));
+        Student.printHelloWorld();
+    }
+
+    @Test
+    @PrepareForTest({Student.class})
+    public void mock_void_static_method() {
+        //given
+        mockStatic(Student.class);
+
+//        doNothing().when(Student.class);
+
+        Student.printHelloWorld();
+    }
+
+    @Test
+    @PrepareForTest({Student.class})
+    public void test_mock_private_method() throws Exception {
+        //given
+        Student student = mock(Student.class);
+        when(student.callPrivateMethod()).thenCallRealMethod();
+        when(student, "getPrivateName").thenReturn("PrivateMock");
+        assertEquals("PrivateMock", student.callPrivateMethod());
     }
 }

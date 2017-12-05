@@ -32,4 +32,16 @@ public class Student {
     public static String getStaticName() {
         return "name";
     }
+
+    public static void printHelloWorld() {
+        System.out.println("Hello, World");
+    }
+
+    private String getPrivateName() {
+        return "private";
+    }
+
+    public String callPrivateMethod(){
+        return getPrivateName();
+    }
 }

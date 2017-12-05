@@ -43,5 +43,9 @@ public class NormalPowerMockito {
         for(int i=0; i< count+1; i++){
             Mock.getStaticName();
         }
+
+        for(int i=0; i< count+2; i++){
+            Student.printHelloWorld();
+        }
     }
 }
