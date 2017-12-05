@@ -9,4 +9,8 @@ public class Mock {
         Service service = new DefaultService();
         return service.getAge();
     }
+
+    public static String getStaticName(){
+        return "Mock";
+    }
 }

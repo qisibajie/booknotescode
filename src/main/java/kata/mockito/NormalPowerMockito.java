@@ -1,7 +1,5 @@
 package kata.mockito;
 
-import java.io.File;
-
 public class NormalPowerMockito {
 
     public String getStudentName(Student student) {
@@ -35,5 +33,15 @@ public class NormalPowerMockito {
 
     public String callSystemStaticMethod(String str) {
         return System.getProperty(str);
+    }
+
+    public void loopStudent(int count){
+        for(int i=0; i<count;i++){
+            Student.getStaticName();
+        }
+
+        for(int i=0; i< count+1; i++){
+            Mock.getStaticName();
+        }
     }
 }

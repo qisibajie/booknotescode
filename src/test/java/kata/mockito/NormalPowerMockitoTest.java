@@ -7,9 +7,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.*;
 
 @RunWith(PowerMockRunner.class)
+@PrepareForTest(Mock.class)
 public class NormalPowerMockitoTest {
 
     @Test
@@ -65,7 +67,7 @@ public class NormalPowerMockitoTest {
 
     @Test
     @PrepareForTest(Student.class)
-    public void should_use_RunWith_PrepareForTest_annotation_when_mock_static_method_given_static_method_in_student(){
+    public void should_use_RunWith_PrepareForTest_annotation_when_mock_static_method_given_static_method_in_student() {
         //given
         NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
         //when
@@ -91,7 +93,7 @@ public class NormalPowerMockitoTest {
 
     @Test
     @PrepareForTest(NormalPowerMockito.class)
-    public void should_use_PrepareForTest_annotation_when_mock_system_static_method(){
+    public void should_use_PrepareForTest_annotation_when_mock_system_static_method() {
         //given
         NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
         mockStatic(System.class);
@@ -100,5 +102,23 @@ public class NormalPowerMockitoTest {
         String expectedName = normalPowerMockito.callSystemStaticMethod("abc");
         //then
         assertThat(expectedName, is("AAA"));
+    }
+
+    @Test
+    @PrepareForTest({Student.class, Mock.class})
+    public void verify_static_method() {
+        //given
+        NormalPowerMockito normalPowerMockito = new NormalPowerMockito();
+        mockStatic(Student.class);
+        mockStatic(Mock.class);
+        //when
+        normalPowerMockito.loopStudent(2);
+        //then
+
+       verifyStatic(times(2));
+        Student.getStaticName();
+
+        verifyStatic(times(4));
+        Mock.getStaticName();
     }
 }
