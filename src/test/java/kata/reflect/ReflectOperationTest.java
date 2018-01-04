@@ -1,9 +1,10 @@
 package kata.reflect;
 
-import kata.mockito.Person;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+
+import static org.junit.Assert.assertTrue;
 
 public class ReflectOperationTest {
     @Test
@@ -17,17 +18,8 @@ public class ReflectOperationTest {
 
     @Test
     public void testSubClassObjectAttribute() {
-        ReflectStudent reflectStudent = new ReflectStudent();
-        Class<?> studentClass = ReflectStudent.class;
-
-        while (studentClass != Object.class) {
-
-            Field[] fields = studentClass.getDeclaredFields();
-            for (Field field : fields) {
-                System.out.println(field.getName());
-            }
-            studentClass = studentClass.getSuperclass();
-        }
+        boolean isExistSameAttribute = ReflectOperation.isExistSameAttribute(ReflectStudent.class);
+        assertTrue(!isExistSameAttribute);
     }
 
 }

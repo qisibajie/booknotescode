@@ -5,6 +5,16 @@ public class ReflectPerson {
 
     String ID;
 
+   /* String grade;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }*/
+
     public String getName() {
         return name;
     }
