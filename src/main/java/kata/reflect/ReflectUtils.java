@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReflectOperation {
+public class ReflectUtils {
     public static boolean isExistSameAttribute(Class<?> reflectClass) {
         Class<?> initClass = reflectClass;
         List<String> attributes = new ArrayList<>();
