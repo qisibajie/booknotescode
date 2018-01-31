@@ -12,7 +12,7 @@ import static org.powermock.api.support.membermodification.MemberMatcher.method;
 import static org.powermock.api.support.membermodification.MemberModifier.stub;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Person.class})
+@PrepareForTest({Person.class, EnumPerson.class})
 public class StubTest {
 
     @Test
@@ -41,8 +41,15 @@ public class StubTest {
 
     @Test
     public void testStaticMethodStub() {
-        stub(method(Person.class, "getStatic")).toReturn("static");
+        stub(method(Person.class, "getStatic")).toReturn("stubStatic");
 
-        assertEquals("static", Person.getStatic());
+        assertEquals("stubStatic", Person.getStatic());
+    }
+
+    @Test
+    public void testEnumMethodStub() {
+        stub(method(EnumPerson.class, "getEnum")).toReturn("stubEnum");
+
+        assertEquals("stubEnum", EnumPerson.ENUM_WILL.getEnum("will"));
     }
 }
